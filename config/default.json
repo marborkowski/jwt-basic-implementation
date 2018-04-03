@@ -1,0 +1,7 @@
+{
+  "environment": "local",
+  "port": 8080,
+  "jwt": {
+    "secret": "TWFyY2luIEJvcmtvd3NraSAxOTg0"
+  }
+}
