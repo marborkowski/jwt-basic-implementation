@@ -5,8 +5,12 @@ const router = express.Router();
 const user = require('../services/user');
 
 router.get('/authenticate', async function (req, res) {
-  const token = await user.authenticate();
-  res.json({ token: token });
+  try {
+    const token = await user.authenticate();
+    res.json({ token: token });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
 });
 
 router.post('/verify', async function (req, res) {

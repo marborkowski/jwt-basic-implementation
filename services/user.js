@@ -11,11 +11,23 @@ module.exports.authenticate = function () {
       active: true
     };
 
-    const token = jwt.sign(user, config.get('jwt.secret'), {
-      expiresIn: 30
-    });
+    jwt.sign(
+      user,
+      config.get('jwt.secret'),
+      {
+        expiresIn: 30,
+        header: {
+          z: '123'
+        }
+      },
+      (err, token) => {
+        if (err) {
+          return reject(new Error(err.message));
+        }
 
-    resolve(token);
+        resolve(token);
+      }
+    );
   });
 }
 
